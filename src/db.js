@@ -27,7 +27,10 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 
 
   //destructuring de los modelos
-  const {} = sequelize.models
+  const {Usuarios,Tareas} = sequelize.models
+
+  Usuarios.hasMany(Tareas)
+  Tareas.belongsTo(Usuarios)
 
   //relaciones de los modelos
 
