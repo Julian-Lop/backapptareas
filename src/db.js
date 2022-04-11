@@ -27,12 +27,24 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 
 
   //destructuring de los modelos
-  const {Usuarios,Tareas} = sequelize.models
+  const {Usuarios,Tareas,Estados,Subtareas} = sequelize.models
 
+   //relaciones de los modelos
+
+
+  //Usuarios
   Usuarios.hasMany(Tareas)
   Tareas.belongsTo(Usuarios)
 
-  //relaciones de los modelos
+  //Tareas
+  Estados.hasMany(Tareas)
+  Tareas.belongsTo(Estados)
+
+  //Subtareas
+  Tareas.hasMany(Subtareas)
+  Subtareas.belongsTo(Tareas)
+  Estados.hasMany(Subtareas)
+  Subtareas.belongsTo(Estados)
 
   module.exports = {
       ...sequelize.models,
