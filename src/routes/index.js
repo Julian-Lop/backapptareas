@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const { registro, ingresar, sesion } = require('../controllers/Registro')
-const { crearSubtarea, eliminarSubtarea } = require('../controllers/Subtareas')
+const { crearSubtarea, eliminarSubtarea, editarSubtarea, obtenerSubtareas } = require('../controllers/Subtareas')
 const { crearTarea, eliminarTarea, editarTarea, obtenerTareas } = require('../controllers/Tareas')
 const router = Router()
 
@@ -20,5 +20,7 @@ router.get('/obtenerTareas/:UsuarioId', obtenerTareas)
 //Subtareas
 router.post('/crearSubtarea', crearSubtarea)
 router.delete('/eliminarSubtarea', eliminarSubtarea)
+router.put('/editarSubtarea', editarSubtarea)
+router.get('/obtenerSubtareas/:TareaId', obtenerSubtareas)
 
 module.exports = router

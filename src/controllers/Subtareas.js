@@ -30,3 +30,47 @@ exports.eliminarSubtarea = async (req,res) => {
         return res.status(500).json({message:error})
     }
 }
+
+
+exports.editarSubtarea = async (req,res)=>{
+    const { id,Titulo,Descripcion,EstadoId} = req.body
+    try {
+        if(!Titulo || !Descripcion || !id) return res.status(200).json({message:'hay campos vacios'})
+
+        const subtarea = await Subtareas.update(
+            {
+                Titulo,
+                Descripcion,
+                EstadoId
+            },{
+            where:{
+                id:id
+            }
+        })
+
+        if(subtarea[0] > 0) return res.status(201).json({message:'Subtarea editada con exíto', subtarea:subtarea})
+        else return res.status(404).json({message:'No se econtró la subtarea'})
+    } catch (error) {
+        return res.status(500).json({message:error})
+    }
+}
+
+
+exports.obtenerSubtareas = async (req,res) => {
+    const { TareaId } = req.params
+    try {
+        if(!TareaId) return res.status(200).json({message:'hay campos vacios'})
+        
+        const subtareas = await Subtareas.findAll({
+            where:{
+                TareaId:TareaId
+            },
+            attributes: ['id','Titulo','Descripcion','TareaId','EstadoId']
+        })
+
+        if(subtareas.length) return res.status(200).json({message:'subtareas obtenidas con exíto', subtareas:subtareas})
+        else return res.status(404).json({message:'subtareas no encontradas'})
+    } catch (error) {
+        return res.status(500).json({message:error})
+    }
+}
