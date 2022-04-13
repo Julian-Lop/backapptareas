@@ -1,4 +1,4 @@
-const {Tareas,Subtareas} = require('../db')
+const {Tareas,Subtareas,Estados} = require('../db')
 
 exports.crearTarea = async (req,res) => {
     const {Titulo,Descripcion,FechaIni,FechaFin,IdUsuario} = req.body
@@ -64,9 +64,8 @@ exports.obtenerTareas = async (req,res) => {
             },
             attributes : ['id','Titulo','Descripcion','FechaIni','FechaFin','UsuarioId','EstadoId']
             ,
-            include: {
-                model: Subtareas
-            }
+            include: [Estados,Subtareas]
+            
         })
 
         if(tareas.length) return res.status(200).json({tareas:tareas})
