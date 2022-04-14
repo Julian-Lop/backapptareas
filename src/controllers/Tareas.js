@@ -21,10 +21,12 @@ exports.crearTarea = async (req,res) => {
 
 
 exports.eliminarTarea = async (req,res) => {
-    const {id} = req.body
+    const {id} = req.params
     try {
-        const tarea = await Tareas.destroy({where:{id:id}})
-        return res.status(410).json({message:'tarea eliminada con exito'})
+        if(id){
+            const tarea = await Tareas.destroy({where:{id:id}})
+        return res.status(200).json({message:'tarea eliminada con exito'})
+        }
     } catch (error) {
         return res.status(500).json({message:error})
     }

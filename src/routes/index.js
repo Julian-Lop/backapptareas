@@ -12,7 +12,7 @@ router.get('/sesion', sesion)
 
 //Tareas
 router.post('/crearTarea', crearTarea)
-router.delete('/eliminarTarea', eliminarTarea)
+router.delete('/eliminarTarea/:id', eliminarTarea)
 router.put('/editarTarea', editarTarea)
 router.get('/obtenerTareas/:UsuarioId', obtenerTareas)
 
