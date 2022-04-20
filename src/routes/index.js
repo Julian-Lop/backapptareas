@@ -19,7 +19,7 @@ router.get('/obtenerTareas/:UsuarioId', obtenerTareas)
 
 //Subtareas
 router.post('/crearSubtarea', crearSubtarea)
-router.delete('/eliminarSubtarea', eliminarSubtarea)
+router.delete('/eliminarSubtarea/:id', eliminarSubtarea)
 router.put('/editarSubtarea', editarSubtarea)
 router.get('/obtenerSubtareas/:TareaId', obtenerSubtareas)
 

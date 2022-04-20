@@ -19,7 +19,7 @@ exports.crearSubtarea = async (req,res) => {
 
 
 exports.eliminarSubtarea = async (req,res) => {
-    const {id} = req.body
+    const {id} = req.params
     try {
         if(!id) return res.status(200).json({message:'se requiere el id de subtarea'})
 
